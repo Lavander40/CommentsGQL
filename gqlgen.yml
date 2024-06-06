@@ -1,0 +1,21 @@
+schema:
+  - schema.graphqls
+
+exec:
+  filename: generated.go
+  package: CommentsGQL
+
+model:
+  filename: models_gen.go
+  package: CommentsGQL
+
+resolver:
+  layout: follow-schema
+  dir: resolver
+  package: resolver
+
+models:
+  Post:
+    model: CommentsGQL.Post
+  Comment:
+    model: CommentsGQL.Comment
