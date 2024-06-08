@@ -6,44 +6,23 @@ package resolver
 
 import (
 	"CommentsGQL"
+	"CommentsGQL/models"
 	"context"
 	"fmt"
 )
 
-// CreatePost is the resolver for the createPost field.
-func (r *mutationResolver) CreatePost(ctx context.Context, title string, content string, commentsEnabled bool) (*CommentsGQL.Post, error) {
-	panic(fmt.Errorf("not implemented: CreatePost - createPost"))
-}
-
-// CreateComment is the resolver for the createComment field.
-func (r *mutationResolver) CreateComment(ctx context.Context, postID string, parentID *string, content string) (*CommentsGQL.Comment, error) {
-	panic(fmt.Errorf("not implemented: CreateComment - createComment"))
-}
-
-// Posts is the resolver for the posts field.
-func (r *queryResolver) Posts(ctx context.Context) ([]*CommentsGQL.Post, error) {
-	panic(fmt.Errorf("not implemented: Posts - posts"))
-}
-
-// Post is the resolver for the post field.
-func (r *queryResolver) Post(ctx context.Context, id string) (*CommentsGQL.Post, error) {
-	panic(fmt.Errorf("not implemented: Post - post"))
-}
-
 // CommentAdded is the resolver for the commentAdded field.
-func (r *subscriptionResolver) CommentAdded(ctx context.Context, postID string) (<-chan *CommentsGQL.Comment, error) {
+func (r *subscriptionResolver) CommentAdded(ctx context.Context, postID int) (<-chan *models.Comment, error) {
 	panic(fmt.Errorf("not implemented: CommentAdded - commentAdded"))
 }
-
-// Mutation returns CommentsGQL.MutationResolver implementation.
-func (r *Resolver) Mutation() CommentsGQL.MutationResolver { return &mutationResolver{r} }
-
-// Query returns CommentsGQL.QueryResolver implementation.
-func (r *Resolver) Query() CommentsGQL.QueryResolver { return &queryResolver{r} }
 
 // Subscription returns CommentsGQL.SubscriptionResolver implementation.
 func (r *Resolver) Subscription() CommentsGQL.SubscriptionResolver { return &subscriptionResolver{r} }
 
-type mutationResolver struct{ *Resolver }
-type queryResolver struct{ *Resolver }
-type subscriptionResolver struct{ *Resolver }
+func (r *Resolver) Query() CommentsGQL.QueryResolver {
+	return &queryResolver{r}
+}
+
+func (r *Resolver) Mutation() CommentsGQL.MutationResolver {
+	return &mutationResolver{r}
+}

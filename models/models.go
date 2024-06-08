@@ -1,7 +1,7 @@
-package CommentsGQL
+package models
 
 type Post struct {
-  ID             string    `json:"id"`
+  ID             int    `json:"id"`
   Title          string    `json:"title"`
   Content        string    `json:"content"`
   Comments       []*Comment `json:"comments"`
@@ -9,9 +9,9 @@ type Post struct {
 }
 
 type Comment struct {
-  ID       string    `json:"id"`
-  PostID   string    `json:"postId"`
-  ParentID *string   `json:"parentId,omitempty"`
+  ID       int    `json:"id"`
+  PostID   int    `json:"postId"`
+  ParentID *int   `json:"parentId,omitempty"`
   Content  string    `json:"content"`
   Children []*Comment `json:"children"`
 }
